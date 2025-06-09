@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Initialize counter
+i=1
+
+# Loop while i is less than or equal to 10
+while [ $i -le 10 ]
+do
+  echo "Best School"
+  i=$((i + 1))
+done
