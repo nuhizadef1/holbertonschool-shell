@@ -1,9 +1,6 @@
-#!/bin/bash
-
-counter=1
-
-until [ $counter -gt 10 ]
+count=1
+until [ $count -gt 10 ]
 do
   echo "Best School"
-  counter=$((counter + 1))
+  ((count++))
 done
