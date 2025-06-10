@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script prints "Best School" 10 times, with "Hi" after the 9th one.
+
 i=1
 while [ $i -le 10 ]
 do
