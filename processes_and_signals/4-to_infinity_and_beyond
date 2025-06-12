@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-# This script prints the PID and name of processes containing 'bash'
+# This script prints "To infinity and beyond" in an infinite loop
 # shellcheck disable=SC2009
 
-for pid in /proc/[0-9]*; do
-    if [ -r "$pid/comm" ]; then
-        name=$(< "$pid/comm")
-        if [[ "$name" == *bash* ]]; then
-            echo "$(basename "$pid") $name"
-        fi
-    fi
+while true; do
+    echo "To infinity and beyond"
+    sleep 1
 done
