@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script finds lines containing 'bash' in process list
+# shellcheck disable=SC2009
+
+ps aux | grep '[b]ash'
