@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 # This script does something
-# Get the PID of the process
-PID=$(pgrep -f "4-to_infinity_and_beyond")
+
+PID=$(ps -eo pid,cmd | grep "4-to_infinity_and_beyond" | grep -v "grep" | awk '{print $1}')
 
 if [ -n "$PID" ]; then
-    echo "Found process with PID: $PID"
-    
-    # Try to stop the process without using kill
-    # Sending SIGTERM by writing to /proc
-    echo "Stopping process without kill..."
-    echo "0" > /proc/$PID/oom_score_adj 2>/dev/null
-    # Trying to use bash built-in disown + wait (won't always work)
-    exec 3>/proc/$PID/fd/0
+    echo "Stopping 4-to_infinity_and_beyond process (PID: $PID)"
+    echo "0" > "/proc/$PID/oom_score_adj" 2>/dev/null
+    exec 3>"/proc/$PID/fd/0"
 else
     echo "Process not found."
-fi
