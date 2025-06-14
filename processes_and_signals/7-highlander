@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script does something
+
+# Define SIGTERM handler
+trap 'echo "I am invincible!!!"' SIGTERM
+
+# Infinite loop
+while true; do
+    echo "To infinity and beyond indefinitely"
+    sleep 2
+done
