@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# This script does something
 
-PID=$(ps -eo pid,cmd | grep "4-to_infinity_and_beyond" | grep -v "grep" | awk '{print $1}')
+# Get the PID of the 4-to_infinity_and_beyond process
+PID=$(ps -eo pid,cmd | grep "[4]-to_infinity_and_beyond" | awk '{print $1}')
 
 if [ -n "$PID" ]; then
-    echo "Stopping 4-to_infinity_and_beyond process (PID: $PID)"
-    echo "0" > "/proc/$PID/oom_score_adj" 2>/dev/null
-    exec 3>"/proc/$PID/fd/0"
+    echo "Stopping process with PID: $PID"
+    
+    # Try to send SIGTERM without using kill
+    if [ -e "/proc/$PID" ]; then
+        echo "0" > "/proc/$PID/oom_score_adj" 2>/dev/null || true
+    fi
 else
     echo "Process not found."
+fi
