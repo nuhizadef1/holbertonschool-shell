@@ -7,7 +7,9 @@ PROCESS="./manage_my_process"
 start() {
     $PROCESS &
     echo $! > "$PID_FILE"
-    echo "manage_my_process started"
+    if [ "$1" != "quiet" ]; then
+        echo "manage_my_process started"
+    fi
 }
 
 stop() {
@@ -16,12 +18,14 @@ stop() {
         kill "$PID" 2>/dev/null
         rm -f "$PID_FILE"
     fi
-    echo "manage_my_process stopped"
+    if [ "$1" != "quiet" ]; then
+        echo "manage_my_process stopped"
+    fi
 }
 
 restart() {
-    stop
-    start
+    stop quiet
+    start quiet
     echo "manage_my_process restarted"
 }
 
