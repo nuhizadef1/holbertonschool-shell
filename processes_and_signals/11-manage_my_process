@@ -15,10 +15,8 @@ stop() {
         PID=$(cat "$PID_FILE")
         kill "$PID" 2>/dev/null
         rm -f "$PID_FILE"
-        echo "manage_my_process stopped"
-    else
-        echo "manage_my_process not running (PID file not found)"
     fi
+    echo "manage_my_process stopped"
 }
 
 restart() {
